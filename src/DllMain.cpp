@@ -4,14 +4,14 @@
 
 #include "Plugin.h"
 
-namespace plugin {
+namespace JumpServerPlugin {
 
 // The global plugin instance.
 std::unique_ptr<Plugin> plugin = nullptr;
 
 extern "C" {
 _declspec(dllexport) bool ll_plugin_load(ll::plugin::NativePlugin& self) {
-    plugin = std::make_unique<plugin::Plugin>(self);
+    plugin = std::make_unique<Plugin>(self);
 
     return true;
 }

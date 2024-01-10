@@ -2,7 +2,7 @@
 
 #include <ll/api/plugin/NativePlugin.h>
 
-namespace plugin {
+namespace JumpServerPlugin {
 
 class Plugin {
 public:
@@ -21,8 +21,12 @@ public:
     /// @return True if the plugin is disabled successfully.
     bool disable();
 
+    const ll::Logger& getLogger();
+
 private:
     ll::plugin::NativePlugin& mSelf;
 };
+
+static ll::Logger* logger;
 
 } // namespace plugin

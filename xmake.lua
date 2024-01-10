@@ -8,6 +8,7 @@ end
 
 -- Option 1: Use the latest version of LeviLamina released on GitHub.
 add_requires("levilamina")
+add_requires("libcurl", { configs = {shared = false} })
 
 -- Option 2: Use a specific version of LeviLamina released on GitHub.
 -- add_requires("levilamina x.x.x")
@@ -40,13 +41,14 @@ add_requires("levilamina")
 --         import("package.tools.xmake").install(package)
 --     end)
 
-target("plugin") -- Change this to your plugin name.
+target("JumpServer") -- Change this to your plugin name.
     add_cxflags(
         "/EHa",
         "/utf-8"
     )
     add_defines(
-        "_HAS_CXX23=1" -- To enable C++23 features
+        "_HAS_CXX23=1", -- To enable C++23 features
+        "CURL_STATICLIB" -- To use libcurl as a static library`
     )
     add_files(
         "src/**.cpp"
@@ -55,7 +57,8 @@ target("plugin") -- Change this to your plugin name.
         "src"
     )
     add_packages(
-        "levilamina"
+        "levilamina",
+        "libcurl"
     )
     add_shflags(
         "/DELAYLOAD:bedrock_server.dll" -- Magic to import symbols from BDS
